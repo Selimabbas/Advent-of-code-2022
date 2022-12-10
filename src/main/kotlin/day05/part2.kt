@@ -24,9 +24,11 @@ fun main() {
         }
 
     instructions.forEach { move ->
+        val removed = mutableListOf<Char>()
         repeat(move.number) {
-            crates[move.end - 1].add(0, crates[move.start - 1].removeFirst())
+            removed.add(crates[move.start - 1].removeFirst())
         }
+        crates[move.end - 1].addAll(0, removed)
     }
     crates.forEach { print(it.first()) }
 }
